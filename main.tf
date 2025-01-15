@@ -12,12 +12,12 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "test" {
-  bucket = "test_bucket_nsh"
+  bucket = "test_bucket_nsh_state2"
   acl    = "private"
 }
 
 resource "aws_instance" "test_instance" {
-  ami           = "ami-046d7944dd9e73a61"
+  ami           = "ami-05d38da78ce859165"
   instance_type = "t2.micro"
   tags = {
     Name = "TO-BE-DELETED"
