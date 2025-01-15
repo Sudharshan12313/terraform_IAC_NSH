@@ -1,9 +1,11 @@
 name: Deploy AWS Infrastructure with Terraform
 
 on:
-  pull_request:
   push:
+   branches:
+    - main
   workflow_dispatch:
+  pull_request:
 
 jobs:
   terraform:
@@ -40,13 +42,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         
-
-
-  terraform-docs:
-    name: Generate Terraform Docs for PRs
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
@@ -59,6 +54,7 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'   
 
       - name: Generate Markdown with Terraform Docs
+        if: ${{ github.event_name == 'pull_request' }}
         uses: terraform-docs/gh-actions@v1.3.0
         with:
           working-dir: .
