@@ -48,6 +48,7 @@ jobs:
           output-file: README.md
           output-method: inject
           config-file: .terraform-docs.yml
+          git-push: true
 
       - name: Apply Terraform on Merge
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
