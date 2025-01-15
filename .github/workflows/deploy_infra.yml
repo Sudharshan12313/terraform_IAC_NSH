@@ -50,6 +50,16 @@ jobs:
           output-method: inject
           git-push: true
 
+      - name: Commit and Push Changes to README.md
+        run: |
+           git config --global user.name "GitHub Actions"
+           git config --global user.email "github-actions@github.com"
+           git add README.md
+           git commit -m "Update README.md with Terraform Docs"
+           git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/terraform_IAC_NSH HEAD:main
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}   
+
       - name: Apply Terraform on Merge
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: terraform apply -auto-approve tfplan
