@@ -12,11 +12,11 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "test" {
-  bucket = "test_bucket_nsh_state2"
+  bucket = "new_bucket_nsh_state_test"
   acl    = "private"
 }
 
-resource "aws_instance" "test_instance" {
+resource "aws_instance" "test_instance_terraform" {
   ami           = "ami-05d38da78ce859165"
   instance_type = "t2.micro"
   tags = {
