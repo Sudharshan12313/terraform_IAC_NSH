@@ -45,9 +45,9 @@ jobs:
       - name: Generate Markdown with Terraform Docs
         uses: terraform-docs/gh-actions@v1.3.0
         with:
+          working-dir: .
           output-file: README.md
           output-method: inject
-          config-file: .terraform-docs.yml
           git-push: true
 
       - name: Commit and Push Changes to README.md
