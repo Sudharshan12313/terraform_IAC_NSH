@@ -58,14 +58,7 @@ jobs:
            git commit -m "Update README.md with Terraform Docs"
            git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/terraform_IAC_NSH HEAD:main
         env:
-          GH_TOKEN: ${{ secrets.PAT_TOKEN }}   
-
-      - name: Apply Terraform on Merge
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        run: terraform apply -auto-approve tfplan
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
 
 
   terraform-docs:
@@ -92,3 +85,10 @@ jobs:
               issue_number: context.payload.pull_request.number,
               body: 'Terraform Docs have been updated. Please review the changes.'
             })
+            
+      - name: Apply Terraform on Merge
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: terraform apply -auto-approve tfplan
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
