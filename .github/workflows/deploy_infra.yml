@@ -52,8 +52,8 @@ jobs:
 
       - name: Commit and Push Changes to README.md
         run: |
-           git config --global user.name "GitHub Actions"
-           git config --global user.email "github-actions@github.com"
+           git config --global user.name "Sudharshan12313"
+           git config --global user.email "sudhanew322@gmail.com"
            git add README.md
            git commit -m "Update README.md with Terraform Docs"
            git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/terraform_IAC_NSH HEAD:main
