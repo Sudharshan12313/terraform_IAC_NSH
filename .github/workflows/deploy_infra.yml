@@ -2,10 +2,8 @@ name: Deploy AWS Infrastructure with Terraform
 
 on:
   pull_request:
-    types:
-     - opened
-    branches:
-     - main
+  push:
+  workflow_dispatch:
 
 jobs:
   terraform:
@@ -47,7 +45,6 @@ jobs:
   terraform-docs:
     name: Generate Terraform Docs for PRs
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
 
     steps:
       - name: Checkout Repository
@@ -71,7 +68,7 @@ jobs:
     
             
       - name: Apply Terraform on Merge
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: terraform apply -auto-approve tfplan
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
