@@ -65,6 +65,7 @@ jobs:
           output-file: README.md
           output-method: inject
           git-push: true
+          config-file: .terraform-docs.yml
     
             
       - name: Apply Terraform on Merge
