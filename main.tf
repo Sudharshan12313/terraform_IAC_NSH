@@ -17,10 +17,10 @@ resource "aws_s3_bucket" "test" {
   acl    = "private"
 }
 
-resource "aws_instance" "test-instance-terra" {
+resource "aws_instance" "test-instance-terraform" {
   ami           = "ami-05d38da78ce859165"
   instance_type = "t2.micro"
   tags = {
-    Name = "TO-BE-DELETED"
+    Name = "TO-BE-DELETED-NOW"
   }
 }
