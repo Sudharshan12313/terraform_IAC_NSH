@@ -65,7 +65,7 @@ jobs:
           config-file: .terraform-docs.yml
     
             
-      - name: Apply Terraform on Merge
+      - name: Apply Terraform on Merge the PR
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: |
          terraform init
