@@ -12,7 +12,7 @@ provider "aws" {
   version = "~> 5.0"
 }
 
-resource "aws_s3_bucket" "test" {
+resource "aws_s3_bucket" "nsh_state_test" {
   bucket = "new-bucket-nsh-state-test"
   acl    = "private"
 }
